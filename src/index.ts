@@ -126,7 +126,7 @@ CREATE INDEX IF NOT EXISTS idx_expired_caches ON ${tableName}(expiredAt);
 
     this.updateCatches = (args, ttl) => {
       const createdAt = now();
-      const expiredAt = ttl != undefined && ttl != 0 ? createdAt + ttl * 1000 : -1;
+      const expiredAt = ttl != undefined && ttl != 0 ? createdAt + ttl : -1;
 
       for (const cache of args) updateStatement.run(cache[0], cache[1], createdAt, expiredAt);
     };
